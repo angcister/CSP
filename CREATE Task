@@ -1,0 +1,65 @@
+//When the user presses the question mark
+onEvent("nextButton", "click", function( ) {
+ questionChecker();
+});
+//If the user has no number input
+//When the user presses go back button
+onEvent("goBackButton", "click", function( ) {
+  setScreen("startScreen");
+  setText("questionInput", "");
+  setText("startInput", "");
+  setText("endInput", "");
+  setText("finalStatement", "");
+  setText("finalStatement2", "");
+  setText("errorQuestion", "");
+});
+
+
+
+var startNumber;
+var endNumber;
+onEvent("goButton", "click", function( ) {
+  filterNumber();
+});
+
+//makes ure user asks question
+function questionChecker() {
+  var question = getText("questionInput");
+  if (question == "" ) {
+    setText("errorQuestion", "Please put a question");
+  } else {
+    setScreen("screen1");
+  setText("questionLabel2",question );
+  setText("errorLabel", "");
+  }
+  
+}
+
+
+
+
+//Random Number Generator bet the user's start and end input
+//Filter the number
+function filterNumber() {
+  startNumber = getText("startInput");
+  endNumber = getText("endInput");
+var finalNumber;
+finalNumber = randomNumber(startNumber, endNumber);
+  if (startNumber == "" || endNumber == "" ) {
+    setText("errorLabel", "Please put in two inputs");
+    setText("finalStatement", "");
+    setText("finalStatement2", "");
+  } else {
+    if (finalNumber%2 == 0 ) {
+    setText("finalStatement2", "Yes; Your number was" + finalNumber);
+    setText("errorLabel", "");
+    } else {
+      setText("finalStatement2", "No; Your number was" + finalNumber);
+    }
+  }
+setProperty("finalStatement", "text", finalNumber);
+}
+
+
+
+
