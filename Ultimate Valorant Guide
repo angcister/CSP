@@ -1,0 +1,83 @@
+    setScreen("homePage");
+
+//home page
+onEvent("valorantLogo", "click", function( ) {
+  stopSound();
+  playSound("Valorant-OST---Main-Menu-(Lobby).mp3", false);
+});
+onEvent("abilitiesButton", "click", function( ) {
+  setScreen("abilitiesPage");
+});
+onEvent("rolesButton", "click", function ( ) {
+  setScreen("rolesPage");
+});
+onEvent("ultimateButton", "click", function ( ) {
+  setScreen("ultimatesPage");
+});
+
+//roles page
+onEvent("duelistButton", "click", function ( ) {
+  setScreen("duelistsPage");
+});
+onEvent("initiatorButton", "click", function ( ) {
+  setScreen("initiatorsPage");
+});
+onEvent("controllerButton", "click", function ( ) {
+  setScreen("controllersPage");
+});
+onEvent("sentinelButton", "click", function ( ) {
+  setScreen("sentinelsPage");
+});
+onEvent("returnHome1", "click", function ( ) {
+  setScreen("homePage");
+});
+
+//duelists page
+onEvent("returnRoles", "click", function ( ) {
+  setScreen("rolesPage");
+});
+
+//initiators page
+onEvent("returnRoles2", "click", function( ) {
+  setScreen("rolesPage");
+});
+
+//controllers page
+onEvent("returnRoles3", "click", function( ) {
+  setScreen("rolesPage");
+});
+
+//sentinels page
+onEvent("returnRoles4", "click", function( ) {
+  setScreen("rolesPage");
+});
+
+//abilities page
+onEvent("returnHome2", "click", function( ) {
+  setScreen("homePage");
+});
+onEvent("cButton", "click", function( ) {
+  setImageURL("razeBoombot", "https://static.wikia.nocookie.net/valorant/images/f/ff/Boom_Bot.png/revision/latest/top-crop/width/360/height/360?cb=20200408152758");
+  stopSound();
+  playSound("Raze-Boom-Bot-OK-Valorant-Sound-Effect-HD.mp3", false);
+});
+onEvent("qButton", "click", function( ) {
+  setImageURL("sageSlow", "https://static.wikia.nocookie.net/valorant/images/b/bb/Slow_Orb.png/revision/latest/top-crop/width/360/height/360?cb=20200405203400");
+  stopSound();
+  playSound("Sage-Slow-Orb-Valorant-Sound-Effect-HD.mp3", false);
+});
+onEvent("eButton", "click", function( ) {
+  setImageURL("killjoyTurret", "https://static.wikia.nocookie.net/valorant/images/3/32/Turret.png/revision/latest/top-crop/width/360/height/360?cb=20200804132303");
+  stopSound();
+  playSound("Turret-Out---Recalling-My-Bot-(Killjoy)---Sound-Effect-(Valorant-Game-SFX).mp3", false);
+});
+
+
+//ultimates page
+onEvent("returnHome3", "click", function( ) {
+  setScreen("homePage");
+});
+onEvent("xButton", "click", function( ) {
+  setImageURL("jettKnives", "https://static.wikia.nocookie.net/valorant/images/0/06/Blade_Storm.png/revision/latest/top-crop/width/360/height/360?cb=20200405215226");
+  setImageURL("omenTeleport", "https://static.wikia.nocookie.net/valorant/images/0/0e/From_the_Shadows.png/revision/latest/top-crop/width/360/height/360?cb=20200405212650");
+});
