@@ -1,0 +1,224 @@
+//lists and variables
+//gets the cat information from the data table "Cat"
+var catName = getColumn("Cats", "Name");
+var catMinWeight = getColumn("Cats", "Minimum Weight");
+var catMaxWeight = getColumn("Cats", "Maximum Weight");
+var catMinLife = getColumn("Cats", "Minimum Life Span");
+var catMaxLife = getColumn("Cats", "Maximum Life Span");
+var catOrigin = getColumn("Cats", "Origin");
+var catDescription = getColumn("Cats", "Temperament");
+var catImage = getColumn("Cats", "Image");
+
+//filtered list
+//set up filtered lists
+var filteredCatName = [];
+var filteredCatMinWeight = [];
+var filteredCatMaxWeight = [];
+var filteredCatMinLife = [];
+var filteredCatMaxLife = [];
+var filteredCatOrigin = [];
+var filteredCatDescription = [];
+var filteredCatImage = [];
+
+//outcome variable after filtering
+var finalCatName;
+var finalCatMinWeight;
+var finalCatMaxWeight;
+var finalCatMinLife;
+var finalCatMaxLife;
+var finalCatOrigin;
+var finalCatDescription;
+var finalCatImage;
+
+
+//workspace
+//start
+onEvent("startButton", "click", function() {
+  setScreen("sizeScreen");
+});
+
+//small cat choice
+onEvent("smallButton", "click", function() {
+  filterSmallCats();
+  setScreen("lifeSpanScreen");
+});
+
+//large cat choice
+onEvent("largeButton", "click", function() {
+  filterLargeCats();
+  setScreen("lifeSpanScreen");
+});
+
+//short lifespan for cat choice
+onEvent("shortButton", "click", function() {
+  filterShortLife();
+  setScreen("resultsScreen");
+  //results screen
+  pickCat();
+  updateCat();
+});
+
+//long lifespan for cat choice
+onEvent("longButton", "click", function() {
+  filterLongLife();
+  setScreen("resultsScreen");
+  //results screen
+  pickCat();
+  updateCat();
+});
+
+//learn more button
+onEvent("learnMoreButton", "click", function() {
+  setScreen("learnMoreScreen");
+  updateCatLearnMore();
+});
+
+//home buttons
+onEvent("homeButton1", "click", function() {
+  setScreen("homeScreen");
+  reset();
+});
+
+onEvent("homeButton2", "click", function() {
+  setScreen("homeScreen");
+  reset();
+});
+
+onEvent("homeButton3", "click", function() {
+  setScreen("homeScreen");
+  reset();
+});
+
+onEvent("backHomeButton", "click", function() {
+  setScreen("homeScreen");
+  reset();
+});
+
+//back button
+onEvent("backSizeButton", "click", function() {
+  setScreen("sizeScreen");
+  reset();
+});
+
+//functions
+//if the user chooses a small cat: puts cats that have a maximum weight of less than or equal to 14 lbs into a filtered list to choose from at the end
+function filterSmallCats() {
+  for (var i = 0; i < catName.length; i++) {
+    var weight = catMaxWeight[i];
+    if(weight <= 14) {
+      appendItem(filteredCatName, catName[i]);
+      appendItem(filteredCatMinWeight, catMinWeight[i]);
+      appendItem(filteredCatMaxWeight, catMaxWeight[i]);
+      appendItem(filteredCatMinLife, catMinLife[i]);
+      appendItem(filteredCatMaxLife, catMaxLife[i]);
+      appendItem(filteredCatOrigin, catOrigin[i]);
+      appendItem(filteredCatDescription, catDescription[i]);
+      appendItem(filteredCatImage, catImage[i]);
+    }
+  } 
+}
+
+//if the user chooses a large cat: puts cats that have a maximum weight of greater than or equal to 15 lbs into a filtered list to choose from at the end
+function filterLargeCats() {
+  for (var i = 0; i < catName.length; i++) {
+    var weight = catMaxWeight[i];
+    if(weight >= 15) {
+      appendItem(filteredCatName, catName[i]);
+      appendItem(filteredCatMinWeight, catMinWeight[i]);
+      appendItem(filteredCatMaxWeight, catMaxWeight[i]);
+      appendItem(filteredCatMinLife, catMinLife[i]);
+      appendItem(filteredCatMaxLife, catMaxLife[i]);
+      appendItem(filteredCatOrigin, catOrigin[i]);
+      appendItem(filteredCatDescription, catDescription[i]);
+      appendItem(filteredCatImage, catImage[i]);
+    }
+  } 
+}
+
+//if the user picks a short-term cat: puts cats that have a minimum lifespan of less than or equal to 13 years into a filtered list
+function filterShortLife() {
+  for(var i = 0; i < catName.length; i++) {
+    var lifeSpan = catMinLife[i];
+    if(lifeSpan <= 13) {
+      appendItem(filteredCatName, catName[i]);
+      appendItem(filteredCatMinWeight, catMinWeight[i]);
+      appendItem(filteredCatMaxWeight, catMaxWeight[i]);
+      appendItem(filteredCatMinLife, catMinLife[i]);
+      appendItem(filteredCatMaxLife, catMaxLife[i]);
+      appendItem(filteredCatOrigin, catOrigin[i]);
+      appendItem(filteredCatDescription, catDescription[i]);
+      appendItem(filteredCatImage, catImage[i]);
+    }
+  }
+}
+
+//if the user picks a long-term cat: puts cats that have a minimum lifespan of greater than or equal to 14 years into a filtered list
+function filterLongLife() {
+  for(var i = 0; i < catName.length; i++) {
+    var lifeSpan = catMinLife[i];
+    if(lifeSpan >= 14) {
+      appendItem(filteredCatName, catName[i]);
+      appendItem(filteredCatMinWeight, catMinWeight[i]);
+      appendItem(filteredCatMaxWeight, catMaxWeight[i]);
+      appendItem(filteredCatMinLife, catMinLife[i]);
+      appendItem(filteredCatMaxLife, catMaxLife[i]);
+      appendItem(filteredCatOrigin, catOrigin[i]);
+      appendItem(filteredCatDescription, catDescription[i]);
+      appendItem(filteredCatImage, catImage[i]);
+    }
+  }
+}
+
+//if there are multiple cats in the filtered list, pick a random cat
+function pickCat() {
+  if(filteredCatName.length > 1) {
+    var randomCat = randomNumber(0, filteredCatName.length-1);
+    finalCatName = filteredCatName[randomCat];
+    finalCatMinWeight = filteredCatMinWeight[randomCat];
+    finalCatMaxWeight = filteredCatMaxWeight[randomCat];
+    finalCatMinLife = filteredCatMinLife[randomCat];
+    finalCatMaxLife = filteredCatMaxLife[randomCat];
+    finalCatOrigin = filteredCatOrigin[randomCat];
+    finalCatDescription = filteredCatDescription[randomCat];
+    finalCatImage = filteredCatImage[randomCat];
+  }
+  else {
+    finalCatName = filteredCatName;
+    finalCatMinWeight = filteredCatMinWeight;
+    finalCatMaxWeight = filteredCatMaxWeight;
+    finalCatMinLife = filteredCatMinLife;
+    finalCatMaxLife = filteredCatMaxLife;
+    finalCatOrigin = filteredCatOrigin;
+    finalCatDescription = filteredCatDescription;
+    finalCatImage = filteredCatImage;
+  }
+}
+
+//updates the results screen based on the cat chosen
+function updateCat() {
+  setProperty("resultsCatName", "text", finalCatName + "!");
+  setProperty("resultsCatImage", "image", finalCatImage);
+}
+
+//updates the learn more screen based on the cat chosen
+function updateCatLearnMore() {
+  setProperty("learnMoreCatName", "text", finalCatName);
+  setProperty("originLabel", "text", finalCatOrigin);
+  setProperty("learnMoreCatImage", "image", finalCatImage);
+  setProperty("weightLabel", "text", "Weight: " + finalCatMinWeight + " lbs ~ " + finalCatMaxWeight + " lbs");
+  setProperty("lifeSpanLabel", "text", "Life Span: " + finalCatMinLife + " yrs ~ " + finalCatMaxLife + " yrs");
+  setProperty("traitsLabel", "text", "Traits: " + finalCatDescription);
+}
+
+//resets the filtered lists if the user clicks on the home button or back button
+function reset() {
+  filteredCatName = [];
+  filteredCatMinWeight = [];
+  filteredCatMaxWeight = [];
+  filteredCatMinLife = [];
+  filteredCatMaxLife = [];
+  filteredCatOrigin = [];
+  filteredCatDescription = [];
+  filteredCatImage = [];
+}
+
